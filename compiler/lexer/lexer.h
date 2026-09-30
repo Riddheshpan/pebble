@@ -35,6 +35,12 @@ typedef enum {
 
     TOKEN_AND_AND,
     TOKEN_OR_OR,
+    TOKEN_SHIFT_LEFT,
+    TOKEN_SHIFT_RIGHT,
+    TOKEN_AMPERSAND,
+    TOKEN_CARET,
+    TOKEN_PIPE,
+    TOKEN_TILDE,
 
     /* Punctuation */
     TOKEN_LPAREN,
@@ -74,6 +80,7 @@ typedef enum {
 
     TOKEN_TRUE,
     TOKEN_FALSE,
+    TOKEN_NULL,
     TOKEN_PRINT
 } TokenKind;
 

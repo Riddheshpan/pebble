@@ -195,6 +195,7 @@ static TokenKind identifier_type(const Lexer *lexer)
 
     KEYWORD("true", TOKEN_TRUE)
     KEYWORD("false", TOKEN_FALSE)
+    KEYWORD("null", TOKEN_NULL)
     KEYWORD("print", TOKEN_PRINT)
 
 #undef KEYWORD
@@ -310,30 +311,30 @@ static Token operator_or_punctuation(Lexer *lexer, char c)
                 match(lexer, '=') ? TOKEN_BANG_EQUAL : TOKEN_BANG
             );
 
-        case '<':
-            return make_token(
-                lexer,
-                match(lexer, '=') ? TOKEN_LESS_EQUAL : TOKEN_LESS
-            );
-
-        case '>':
-            return make_token(
-                lexer,
-                match(lexer, '=') ? TOKEN_GREATER_EQUAL : TOKEN_GREATER
-            );
-
         case '&':
-            if (match(lexer, '&')) {
-                return make_token(lexer, TOKEN_AND_AND);
-            }
-            return make_token(lexer, TOKEN_ERROR);
+            if (match(lexer, '&')) return make_token(lexer, TOKEN_AND_AND);
+            return make_token(lexer, TOKEN_AMPERSAND);
+
+        case '^':
+            return make_token(lexer, TOKEN_CARET);
 
         case '|':
-            if (match(lexer, '|')) {
-                return make_token(lexer, TOKEN_OR_OR);
-            }
-            return make_token(lexer, TOKEN_ERROR);
+            if (match(lexer, '|')) return make_token(lexer, TOKEN_OR_OR);
+            return make_token(lexer, TOKEN_PIPE);
 
+        case '<':
+            if (match(lexer, '=')) return make_token(lexer, TOKEN_LESS_EQUAL);
+            if (match(lexer, '<')) return make_token(lexer, TOKEN_SHIFT_LEFT);
+            return make_token(lexer, TOKEN_LESS);
+
+        case '>':
+            if (match(lexer, '=')) return make_token(lexer, TOKEN_GREATER_EQUAL);
+            if (match(lexer, '>')) return make_token(lexer, TOKEN_SHIFT_RIGHT);
+            return make_token(lexer, TOKEN_GREATER);
+        
+        case '~':
+            return make_token(lexer, TOKEN_TILDE);
+        
         case '(':
             return make_token(lexer, TOKEN_LPAREN);
 

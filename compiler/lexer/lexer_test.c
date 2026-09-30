@@ -61,6 +61,11 @@ static const char *token_name(TokenKind kind)
 
         case TOKEN_AND_AND: return "AND_AND";
         case TOKEN_OR_OR: return "OR_OR";
+        case TOKEN_SHIFT_LEFT: return "SHIFT_LEFT";
+        case TOKEN_SHIFT_RIGHT: return "SHIFT_RIGHT";
+        case TOKEN_AMPERSAND: return "AMPERSAND";
+        case TOKEN_CARET: return "CARET";
+        case TOKEN_PIPE: return "PIPE";
 
         case TOKEN_LPAREN: return "LPAREN";
         case TOKEN_RPAREN: return "RPAREN";
