@@ -5,46 +5,23 @@
 int main(void)
 {
     const char *source =
-        "import \"math.peb\";"
-
-        "struct Person {"
-            "string name;"
-            "number age;"
-            "number[10] scores;"
+        "struct Point {"
+            "number x;"
+            "number y;"
         "}"
-
-        "enum Color { RED, GREEN, BLUE }"
-
-        "function number add(number a, number b) {"
-            "number result a + b;"
-            "if (result > 10) {"
-                "print result;"
-            "} else {"
-                "print 0;"
-            "}"
-            "return result;"
+        "struct Matrix {"
+            "number[10][20] data;"
         "}"
-
-        "function void greet(string name) {"
-            "print \"Hello, \";"
-            "print name;"
+        "function number[10][20] create_matrix(number[10][20] input) {"
+            "number[10][20] result;"
+            "result[2][5] = input[1][3];"
+            "return null;"
         "}"
-
-        "function number main() {"
-            "number i 0;"
-            "while (i < 10) {"
-                "if (i == 5) {"
-                    "break;"
-                "}"
-                "i = i + 1;"
-            "}"
-            "repeat (3) {"
-                "print i;"
-            "}"
-            "for (number j 0; j < 3; j = j + 1) {"
-                "print j;"
-            "}"
-            "return 0;"
+        "function void main() {"
+            "Point[3][4] grid;"
+            "number[5][6][7] tensor;"
+            "grid[1][2].x = 10;"
+            "tensor[1][2][3] = 42;"
         "}";
 
 
@@ -59,4 +36,4 @@ int main(void)
     }
 
     return 0;
-}
+}

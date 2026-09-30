@@ -190,8 +190,8 @@ struct ASTNode {
             size_t name_length;
             const char *type;
             size_t type_length;
-            int is_array;
-            size_t array_length;
+            size_t *array_lengths;
+            size_t array_dimension_count;
             ASTNode *initializer;
         } var_decl;
 
@@ -221,6 +221,8 @@ struct ASTNode {
 
             const char *return_type;
             size_t return_type_length;
+            size_t *return_array_lengths;
+            size_t return_array_dimension_count;
 
             ASTNode *body;
         } function_decl;
@@ -256,6 +258,8 @@ ASTNode *ast_new_function(
     size_t parameter_count,
     const char *return_type,
     size_t return_type_length,
+    size_t *return_array_lengths,
+    size_t return_array_dimension_count,
     ASTNode *body,
     size_t line,
     size_t column
@@ -394,8 +398,8 @@ ASTNode *ast_new_var_decl(
     size_t name_length,
     const char *type,
     size_t type_length,
-    int is_array,
-    size_t array_length,
+    size_t *array_lengths,
+    size_t array_dimension_count,
     ASTNode *initializer,
     size_t line,
     size_t column
@@ -405,4 +409,4 @@ void ast_free(ASTNode *node);
 
 void ast_print(const ASTNode *node, int indent);
 
-#endif /* PEBBLE_AST_H */
+#endif /* PEBBLE_AST_H */
